@@ -1,14 +1,15 @@
-<ion-view view-title="{{user.login}}">
-  <ion-content>
+<ion-view view-title="@{{user.login}}">
+  <ion-content class="light-background">
     <div class="list">
       <div class="item item-thumbnail-left">
         <img ng-src="{{user.avatar_url}}">
         <h2>{{user.name}}</h2>
-        <p>
+        <p><i class="fa fa-link"></i>
           <a href="{{user.blog}}" target="system">{{user.blog}}</a>
         </p>
-        <p>{{user.location}}</p>
+        <p><i class="fa fa-map-marker"></i> {{user.location}}</p>
       </div>
+      <div class="item item-divider"></div>
       <div class="item">
         {{user.followers}} Followers
       </div>
@@ -16,5 +17,10 @@
         {{user.following}} Following
       </div>
     </div>
+    <div class="item item-divider"></div>
+    <a class="item" href="#/app/profile/events">
+      Events
+    </a>
+  </div>
   </ion-content>
 </ion-view>

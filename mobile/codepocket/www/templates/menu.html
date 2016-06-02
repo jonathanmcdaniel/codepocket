@@ -13,22 +13,45 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar class="bar-dark">
+      <h1 class="title">CodePocket</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="dark-background">
       <ion-list>
+        <ion-item menu-close href="#/app/search">
+          <i class="fa fa-search"></i> Search
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          <i class="fa fa-feed"></i> Feed
+        </ion-item>
+        <div class="item item-divider">
+          Personal
+        </div>
+        <ion-item menu-close href="#/app/profile">
+          <i class="fa fa-user"></i> Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/repos">
+          <i class="fa fa-book"></i> Repositories
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          <i class="fa fa-search"></i> Notifications
+        </ion-item>
+        <div class="item item-divider">
+          Organizations
+        </div>
+        <ion-item menu-close href="#/app/profile">
+          Simnova
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          Kegg
+        </ion-item>
+        <ion-item menu-close href="#/app/profile">
+          fitDegree
+        </ion-item>
+        <div class="item item-divider">
+        </div>
         <ion-item menu-close ng-click="login()">
           Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
         </ion-item>
       </ion-list>
     </ion-content>

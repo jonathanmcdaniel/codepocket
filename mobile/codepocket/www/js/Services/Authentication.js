@@ -3,7 +3,7 @@ angular.module('CodePocket.Authentication', [])
   return {
     request: function () {
       if (window.cordova){
-        $cordovaOauth.github("f85b3f5709b37fd31087", "cb9adbcca15fcf41c0cf2a6c6ff1a53ed5b8e542", ["user"], {}).then(function(result) {
+        $cordovaOauth.github("f85b3f5709b37fd31087", "cb9adbcca15fcf41c0cf2a6c6ff1a53ed5b8e542", ["user", "repo", "notifications"], {}).then(function(result) {
           var items = result.split("&");
           var access = items[0];
           var token = access.split("=")[1];

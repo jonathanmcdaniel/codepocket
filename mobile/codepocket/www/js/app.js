@@ -1,10 +1,12 @@
-// Ionic Starter App
+var imports = [];
+imports.push("ionic");
+imports.push("ngCordovaOauth");
+imports.push("CodePocket.MenuCtrl");
+imports.push("CodePocket.Authentication");
+imports.push("CodePocket.Users");
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('CodePocket', ['ionic', 'CodePocket.controllers', 'ngCordovaOauth', "CodePocket.Authentication", "CodePocket.Users"])
+
+angular.module('CodePocket', imports)
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,51 +27,61 @@ angular.module('CodePocket', ['ionic', 'CodePocket.controllers', 'ngCordovaOauth
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'MenuCtrl'
   })
-
   .state('app.search', {
     url: '/search',
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html'
       }
-    }
+    },
+    cache: false
   })
-
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      },
-      cache: false
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+  .state('app.repos', {
+    url: '/repos',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/repos.html',
+        controller: 'ReposCtrl'
+      }
+    },
+    cache: false
+  })
+  .state('app.repos.detail', {
+    url: '/repos/:path*',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/repos.html',
+        controller: 'ReposCtrl'
+      }
+    },
+    cache: false
+  })
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      }
+    },
+    cache: false
+  })
+  .state('app.events', {
+    url: '/profile/events',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/events.html',
+        controller: 'ProfileEventsCtrl'
       }
     },
     cache: false
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/search');
 });
