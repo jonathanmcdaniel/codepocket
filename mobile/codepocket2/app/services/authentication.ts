@@ -12,6 +12,14 @@ export class Authentication {
         this.http = http;
     }
 
+    isAuthenticated(){
+      if (!window.localStorage.getItem("github_access_token")){
+        this.login();
+      } else {
+        return true;
+      }
+    }
+
     logout(): void {
         window.localStorage.removeItem("github_access_token");
     }

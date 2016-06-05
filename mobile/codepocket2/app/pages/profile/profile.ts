@@ -10,15 +10,15 @@ import 'rxjs/add/operator/toPromise';
 export class ProfilePage {
     user = new Object();
 
-    constructor(http: Http) {
-        this.getProfile(http).then(user => this.user = user);
+    constructor(private http: Http) {
+        this.getProfile().then(user => this.user = user);
     }
 
-    getProfile(http: Http) {
+    getProfile() {
         var headers = new Headers();
         var token = "token " + window.localStorage.getItem("github_access_token");
         headers.append('Authorization', token);
-        return http.get("https://api.github.com/users/jonathanmcdaniel", { headers: headers })
+        return this.http.get("https://api.github.com/users/jonathanmcdaniel", { headers: headers })
             .toPromise()
             .then(response => response.json());
     }

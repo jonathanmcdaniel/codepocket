@@ -1,10 +1,28 @@
 
 <ion-navbar *navbar>
-  <ion-title>{{repo.name}}</ion-title>
+  <ion-title>Repo Detail</ion-title>
 </ion-navbar>
 
 
 <ion-content>
-
-
+  <ion-card>
+    <ion-card-header>
+      {{selectedRepo.name}}<br/>
+      <small>{{selectedRepo.owner.login}}</small>
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngIf="selectedRepo.description">
+        {{selectedRepo.description}}
+      </div>
+      <div *ngIf="selectedRepo.homepage">
+        {{selectedRepo.homepage}}
+      </div>
+      <div *ngIf="selectedRepo.language">
+        Primary Language: {{selectedRepo.language}}
+      </div>
+    </ion-card-content>
+  </ion-card>
+    <button (click)="viewContents($event)">
+      View Repo Contents
+    </button>
 </ion-content>

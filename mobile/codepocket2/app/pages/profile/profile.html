@@ -8,15 +8,27 @@
 
 
 <ion-content>
-  <ion-list>
-
+  <ion-card>
     <ion-item>
-      <ion-avatar item-left>
+      <ion-thumbnail item-left>
         <img src="{{user.avatar_url}}">
-      </ion-avatar>
-      <h1>{{user.name}}</h1>
-      <h3>{{user.login}}</h3>
+      </ion-thumbnail>
+      {{user.login}}<br/>
+      <small>
+        {{user.name}}
+        <div *ngIf="user.location">
+          {{user.location}}
+        </div>
+        <div *ngIf="user.blog">
+          <a style="text-decoration: none;" href="{{user.blog}}" target="_blank">{{user.blog}}</a>
+        </div>
+      </small>
     </ion-item>
-  </ion-list>
+    <ion-card-content>
+      <ion-list>
+        
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>
