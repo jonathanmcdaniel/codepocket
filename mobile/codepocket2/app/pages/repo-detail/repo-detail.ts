@@ -3,6 +3,8 @@ import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Headers} from '@angular/http';
 import {RepoContentsPage} from '../repo-contents/repo-contents';
+import {ProfilePage} from '../profile/profile';
+import {UserList} from '../user-list/user-list';
 import 'rxjs/add/operator/toPromise';
 
 
@@ -14,22 +16,27 @@ export class RepoDetailPage {
 
     constructor(private nav: NavController, navParams: NavParams, private http:Http) {
       this.selectedRepo = navParams.get('repo');
-
     }
 
-    viewContents(event, url){
+    viewContents($event, url){
       this.nav.push(RepoContentsPage, {
         url: this.selectedRepo.url + "/contents",
         activeName: this.selectedRepo.name
       });
     }
 
-    /*getRepoDetail() {
-        var headers = new Headers();
-        var token = "token " + window.localStorage.getItem("github_access_token");
-        headers.append('Authorization', token);
-        return this.http.get("https://api.github.com/users/jonathanmcdaniel/repos", { headers: headers })
-            .toPromise()
-            .then(response => response.json());
-    }*/
+    viewOwnerProfile($event, url){
+      this.nav.push(ProfilePage, {
+        url: url
+      });
+    }
+
+    viewStargazers($event, url){
+      this.nav.push(UserList, {
+          url: url.split("{")[0]
+      });
+    }
+
+
+
 }

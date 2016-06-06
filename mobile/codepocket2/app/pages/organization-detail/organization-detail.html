@@ -1,0 +1,72 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title style="padding: 0 25%">{{org.login}}</ion-title>
+</ion-navbar>
+
+
+<ion-content>
+
+  <ion-card>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="{{org.avatar_url}}">
+      </ion-thumbnail>
+      {{org.login}}<br/>
+      <small>
+        {{org.name}}
+        <div *ngIf="org.location">
+          {{org.location}}
+        </div>
+        <div *ngIf="org.blog">
+          <a style="text-decoration: none;" href="{{org.blog}}" target="_blank">{{org.blog}}</a>
+        </div>
+      </small>
+    </ion-item>
+    <p *ngIf="org.bio" style="padding: 16px; padding-top:0;">
+      {{org.bio}}
+    </p>
+  </ion-card>
+
+  <div [ngSwitch]="view">
+    <ion-list *ngSwitchWhen="'repositories'">
+      <ion-list-header>
+        Repositories
+      </ion-list-header>
+      <ion-item *ngFor="let repo of repos;" (click)="viewRepo($event, repo)">
+        {{repo.name}}
+        <br/>
+        <small style="word-wrap: break-word;">
+          {{repo.description}}
+        </small>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngSwitchWhen="'people'">
+      <ion-list-header>
+        People
+      </ion-list-header>
+      <ion-item *ngFor="let user of people;" (click)="viewProfile($event, user.url)">
+        <ion-avatar item-left>
+          <img src="{{user.avatar_url}}">
+        </ion-avatar>
+        {{user.login}}
+        <ion-icon name="arrow-forward" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>
+<ion-toolbar position="bottom">
+  <div padding>
+    <ion-segment [(ngModel)]="view">
+      <ion-segment-button value="repositories">
+        Repositories
+      </ion-segment-button>
+      <ion-segment-button value="people">
+        People
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-toolbar>

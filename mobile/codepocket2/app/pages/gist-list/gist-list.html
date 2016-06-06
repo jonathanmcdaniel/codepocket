@@ -1,0 +1,16 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Gists</ion-title>
+</ion-navbar>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let gist of gistList; let i = index" (click)="itemTapped($event, gist)">
+      {{gist.files}}
+    </ion-item>
+  </ion-list>
+</ion-content>

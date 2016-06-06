@@ -7,22 +7,22 @@ import 'rxjs/add/operator/toPromise';
 
 
 @Page({
-    templateUrl: 'build/pages/repo-list/repo-list.html'
+    templateUrl: 'build/pages/gist-list/gist-list.html'
 })
-export class RepoListPage {
-    repoList = new Array();
+export class GistListPage {
+    gistList = new Array();
 
     constructor(private nav: NavController, navParams: NavParams, private http:Http) {
       var url = navParams.get('url');
       if (!url){
         url = "https://api.github.com/user/repos";
       }
-      this.getRepoList(url).then(repoList => {
-        this.repoList = repoList;
+      this.getGistList(url).then(gistList => {
+        this.gistList = gistList;
       });
     }
 
-    getRepoList(url) {
+    getGistList(url) {
         var headers = new Headers();
         var token = "token " + window.localStorage.getItem("github_access_token");
         headers.append('Authorization', token);

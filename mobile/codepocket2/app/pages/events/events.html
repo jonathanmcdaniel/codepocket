@@ -1,0 +1,38 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Events</ion-title>
+</ion-navbar>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let event of events; let i = index" (click)="itemTapped($event, gist)">
+      <ion-avatar item-left>
+        <img src="{{event.actor.avatar_url}}">
+      </ion-avatar>
+      <div *ngIf="event.type == 'PushEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> pushed to <span primary>{{event.repo.name}}</span>
+        <br/>
+        <small>{{event.payload.commits[0].message}}</small>
+      </div>
+      <div *ngIf="event.type == 'WatchEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> starred <span primary>{{event.repo.name}}</span>
+      </div>
+      <div *ngIf="event.type == 'CreateEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> created <span primary>{{event.repo.name}}</span>
+      </div>
+      <div *ngIf="event.type == 'ForkEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> forked <span primary>{{event.repo.name}}</span> to <span primary>{{event.payload.forkee.full_name}}</span>
+      </div>
+      <div *ngIf="event.type == 'PullRequestEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> {{event.payload.action}} a pull request to <span primary>{{event.repo.name}}</span>
+      </div>
+      <div *ngIf="event.type == 'IssueCommentEvent'" style="white-space: normal;">
+        <span primary>{{event.actor.login}}</span> {{event.payload.action}} an issue on <span primary>{{event.repo.name}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

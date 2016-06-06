@@ -10,7 +10,12 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let repo of repoList; let i = index" (click)="itemTapped($event, repo)">
-      {{repo.name}}
+      <span primary>{{repo.name}}</span>
+      <br/>
+      <small style="word-wrap: break-word;">
+        <span *ngIf="repo.description"><em>{{repo.description}}</em><br/></span>
+        <span *ngIf="repo.language">{{repo.language}} | </span><span>{{repo.stargazers_count}} Stars</span>
+      </small>
     </ion-item>
   </ion-list>
 </ion-content>

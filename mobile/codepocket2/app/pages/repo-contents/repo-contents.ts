@@ -18,7 +18,6 @@ export class RepoContentsPage {
         this.activeName = navParams.get('activeName');
         this.getContents(url).then(files => {
             this.files = files;
-            console.log(files);
         });
     }
 

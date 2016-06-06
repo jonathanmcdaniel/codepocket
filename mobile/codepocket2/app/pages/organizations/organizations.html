@@ -1,0 +1,19 @@
+
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Organizations</ion-title>
+</ion-navbar>
+
+
+<ion-content *ngIf="orgs.length > 0">
+  <ion-list>
+    <ion-item *ngFor="let org of orgs; let i = index" (click)="itemTapped($event, org.url)">
+      <span>{{org.login}}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-content *ngIf="orgs.length == 0" padding>
+  <h1>No Organizations</h1>
+</ion-content>

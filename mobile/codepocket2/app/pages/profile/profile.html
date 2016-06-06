@@ -3,7 +3,7 @@
   <button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-  <ion-title>Profile</ion-title>
+  <ion-title>{{user.login}}</ion-title>
 </ion-navbar>
 
 
@@ -24,11 +24,44 @@
         </div>
       </small>
     </ion-item>
-    <ion-card-content>
-      <ion-list>
-        
-      </ion-list>
-    </ion-card-content>
+    <p *ngIf="user.bio" style="padding: 16px; padding-top:0;">
+      {{user.bio}}
+    </p>
+    <ion-grid style="border-top: 1px solid #eee;">
+      <ion-row style="text-align:center">
+        <ion-col width-50 *ngIf="user.followers > 0" (click)="viewFollowers($event, user.followers_url)">{{user.followers}}<br/>Followers</ion-col>
+        <ion-col width-50 *ngIf="user.followers == 0">{{user.following}}<br/>Following</ion-col>
+        <ion-col width-50 *ngIf="user.following > 0" (click)="viewFollowing($event, user.following_url)">{{user.following}}<br/>Following</ion-col>
+        <ion-col width-50 *ngIf="user.following == 0">{{user.following}}<br/>Following</ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
+
+  <ion-card>
+
+    <ion-list>
+      <ion-item (click)="viewOrganizations($event, user.organizations_url)">
+        Organizations
+      </ion-item>
+      <ion-item (click)="viewEvents($event, user.events_url)">
+        Events
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-list>
+      <ion-item *ngIf="user.public_repos > 0" (click)="viewRepos($event, user.repos_url)">
+        Public Repositories: {{user.public_repos}}
+      </ion-item>
+      <ion-item *ngIf="user.public_gists > 0" (click)="viewGists($event, user.gists_url)">
+        Public Gists: {{user.public_gists}}
+      </ion-item>
+      <ion-item (click)="viewStarredRepos($event, user.starred_url)">
+        Starred Repos
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
 
 </ion-content>
