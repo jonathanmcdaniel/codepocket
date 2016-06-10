@@ -1,22 +1,16 @@
-<ion-menu [content]="content">
 
-  <ion-toolbar dark>
-    <ion-title></ion-title>
-  </ion-toolbar>
 
-  <ion-content>
-    <ion-list>
-      <div *ngFor="let page of pages">
-        <ion-item menuClose ion-item *ngIf="page.component" (click)="openPage(page)">
-          {{page.title}}
-        </ion-item>
-      </div>
-    </ion-list>
-    <div padding>
-      <button block outline danger (click)="login()">Login</button>
-    </div>
-  </ion-content>
 
-</ion-menu>
+    <ion-tabs *ngIf="android">
+      <ion-tab tabIcon="pulse" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="code" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="notifications" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="person" [root]="tab1"></ion-tab>
+    </ion-tabs>
 
-<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+    <ion-tabs *ngIf="!android">
+      <ion-tab tabIcon="pulse" tabTitle="Activity" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="code" tabTitle="Repos" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="notifications" tabTitle="Notifications" [root]="tab1"></ion-tab>
+      <ion-tab tabIcon="person" tabTitle="Profile" [root]="tab1"></ion-tab>
+    </ion-tabs>

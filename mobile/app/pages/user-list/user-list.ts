@@ -23,7 +23,7 @@ export class UserList {
         headers.append('Authorization', token);
         return this.http.get(url, { headers: headers })
             .toPromise()
-            .then(response => response.json());
+            .then(response => response.json(), error => alert("network promise error"));
     }
 
     viewProfile($event, url){

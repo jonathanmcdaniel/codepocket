@@ -31,7 +31,7 @@ export class ProfilePage {
         headers.append('Authorization', token);
         return this.http.get(url, { headers: headers })
             .toPromise()
-            .then(response => response.json());
+            .then(response => response.json(), error => console.log(error.json()));
     }
 
     viewFollowers($event, url) {

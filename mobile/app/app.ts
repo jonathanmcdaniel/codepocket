@@ -13,14 +13,18 @@ enableProdMode();
 
 declare var window: any;
 
+
 @Component({
     templateUrl: 'build/app.html'
 })
 
-ionicBootstrap(MyApp, [], {});
 
 class MyApp {
     @ViewChild(Nav) nav: Nav;
+
+    tab1;
+	tab2;
+    android: boolean;
 
     rootPage: any = ProfilePage;
     pages: Array<{ title: string, component?: any }>
@@ -29,13 +33,9 @@ class MyApp {
 
         this.initializeApp();
         // used for an example of ngFor and navigation
-        this.pages = [
-            { title: 'Personal' },
-            { title: 'Profile', component: ProfilePage },
-            { title: 'Repositories' },
-            { title: 'Repositories', component: RepoListPage },
-            { title: 'Organizations' }
-        ];
+    this.tab1 = ProfilePage;
+    this.tab2 = RepoListPage;
+    this.android = platform.is("android");
 
     }
 
@@ -101,3 +101,5 @@ class MyApp {
         this.nav.setRoot(page.component);
     }
 }
+
+ionicBootstrap(MyApp, [], {});
