@@ -1,8 +1,9 @@
 import {ViewChild} from '@angular/core';
 import {Component} from '@angular/core';
-import {ionicBootstrap, Platform, Nav} from 'ionic-angular';
+import {Platform, ionicBootstrap, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {ProfilePage} from './pages/profile/profile';
+import {EventsList} from './pages/events/events';
 import {RepoListPage} from './pages/repo-list/repo-list';
 import {Authentication} from './services/authentication';
 import {Http} from '@angular/http';
@@ -10,43 +11,37 @@ import {Headers} from '@angular/http';
 import {enableProdMode} from "@angular/core";
 
 enableProdMode();
-
 declare var window: any;
-
 
 @Component({
     templateUrl: 'build/app.html'
 })
-
-
-class MyApp {
+export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
     tab1;
-	tab2;
+    tab2;
+    tab3;
+    tab4;
     android: boolean;
-
     rootPage: any = ProfilePage;
-    pages: Array<{ title: string, component?: any }>
 
     constructor(private platform: Platform, private http: Http) {
-
         this.initializeApp();
-        // used for an example of ngFor and navigation
-    this.tab1 = ProfilePage;
-    this.tab2 = RepoListPage;
-    this.android = platform.is("android");
-
+        this.android = platform.is("android");
+        this.tab1 = EventsList;
+        this.tab2 = RepoListPage;
+        this.tab3 = ProfilePage;
+        this.tab4 = ProfilePage;
     }
 
     initializeApp() {
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-              StatusBar.styleDefault();
+            StatusBar.styleDefault();
         });
     }
-
     login(): void {
         this.platform.ready().then(() => {
             this.githubLogin("f85b3f5709b37fd31087", "cb9adbcca15fcf41c0cf2a6c6ff1a53ed5b8e542", ["user", "repo", "notifications"], {}).then((access_token) => {
@@ -94,7 +89,6 @@ class MyApp {
         });
         return promise;
     }
-
     openPage(page) {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
@@ -102,4 +96,4 @@ class MyApp {
     }
 }
 
-ionicBootstrap(MyApp, [], {});
+ionicBootstrap(MyApp)

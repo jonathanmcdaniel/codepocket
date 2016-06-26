@@ -1,15 +1,12 @@
 
 <ion-navbar *navbar>
-  <button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
   <ion-title>Users</ion-title>
 </ion-navbar>
 
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let follower of followers; let i = index" (click)="viewProfile($event, follower.url)">
+    <ion-item tappable *ngFor="let follower of followers; let i = index" (click)="viewProfile($event, follower.url)">
       <ion-avatar item-left>
         <img src="{{follower.avatar_url}}">
       </ion-avatar>

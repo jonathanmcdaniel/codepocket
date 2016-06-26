@@ -5,30 +5,55 @@
 
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingText="Pull to refresh">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let event of events; let i = index" (click)="itemTapped($event, gist)">
+    <ion-item *ngFor="let event of events; let i = index">
       <ion-avatar item-left>
         <img src="{{event.actor.avatar_url}}">
       </ion-avatar>
       <div *ngIf="event.type == 'PushEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> pushed to <span primary>{{event.repo.name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> pushed to <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
         <br/>
-        <small>{{event.payload.commits[0].message}}</small>
+        <!--<small>{{event.payload.commits[0].message}}</small>-->
       </div>
       <div *ngIf="event.type == 'WatchEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> starred <span primary>{{event.repo.name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> starred <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
       </div>
       <div *ngIf="event.type == 'CreateEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> created <span primary>{{event.repo.name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> created <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'MemberEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} <a primary (click)="viewProfile($event, event.payload.member.url)">{{event.payload.member.login}}</a> as a collaborator on <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'DeleteEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> deleted <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
       </div>
       <div *ngIf="event.type == 'ForkEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> forked <span primary>{{event.repo.name}}</span> to <span primary>{{event.payload.forkee.full_name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> forked <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a> to <a primary>{{event.payload.forkee.full_name}}</a>
       </div>
       <div *ngIf="event.type == 'PullRequestEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> {{event.payload.action}} a pull request to <span primary>{{event.repo.name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} a pull request to <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
       </div>
       <div *ngIf="event.type == 'IssueCommentEvent'" style="white-space: normal;">
-        <span primary>{{event.actor.login}}</span> {{event.payload.action}} an issue on <span primary>{{event.repo.name}}</span>
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} a comment on an issue for <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'GollumEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.pages[0].action}} {{event.payload.pages[0].title}} in the wiki for <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'IssuesEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} an issue on <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'ReleaseEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} version {{event.payload.release.tag_name}} of <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'PullRequestReviewCommentEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> {{event.payload.action}} a comment on a pull request for <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
+      </div>
+      <div *ngIf="event.type == 'CommitCommentEvent'" style="white-space: normal;">
+        <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> made a comment on a commit on <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
       </div>
     </ion-item>
   </ion-list>

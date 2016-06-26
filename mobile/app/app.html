@@ -1,16 +1,13 @@
+<ion-tabs *ngIf="android">
+  <ion-tab tabIcon="pulse" [root]="tab1"></ion-tab>
+  <ion-tab tabIcon="code" [root]="tab2"></ion-tab>
+  <ion-tab tabIcon="notifications" [root]="tab3"></ion-tab>
+  <ion-tab tabIcon="person" [root]="tab4"></ion-tab>
+</ion-tabs>
 
-
-
-    <ion-tabs *ngIf="android">
-      <ion-tab tabIcon="pulse" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="code" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="notifications" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="person" [root]="tab1"></ion-tab>
-    </ion-tabs>
-
-    <ion-tabs *ngIf="!android">
-      <ion-tab tabIcon="pulse" tabTitle="Activity" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="code" tabTitle="Repos" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="notifications" tabTitle="Notifications" [root]="tab1"></ion-tab>
-      <ion-tab tabIcon="person" tabTitle="Profile" [root]="tab1"></ion-tab>
-    </ion-tabs>
+<ion-tabs *ngIf="!android">
+  <ion-tab tabIcon="pulse" tabTitle="Activity" [root]="tab1"></ion-tab>
+  <ion-tab tabIcon="code" tabTitle="Repos" [root]="tab2"></ion-tab>
+  <ion-tab tabIcon="notifications" tabTitle="Notifications" [root]="tab3"></ion-tab>
+  <ion-tab tabIcon="person" tabTitle="Profile" [root]="tab4"></ion-tab>
+</ion-tabs>

@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let repo of repoList; let i = index" (click)="itemTapped($event, repo)">
+    <ion-item tappable *ngFor="let repo of repoList; let i = index" (click)="itemTapped($event, repo)">
       <span primary>{{repo.name}}</span>
       <br/>
       <small style="word-wrap: break-word;">

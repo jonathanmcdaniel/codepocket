@@ -8,7 +8,7 @@
   <ion-card>
     <ion-card-header>
       {{selectedRepo.name}}<br/>
-      <small (click)="viewOwnerProfile($event, selectedRepo.owner.url)"><a href="#">{{selectedRepo.owner.login}}</a></small>
+      <small tappable (click)="viewOwnerProfile($event, selectedRepo.owner.url)" primary>{{selectedRepo.owner.login}}</small>
     </ion-card-header>
     <ion-card-content>
       <div *ngIf="selectedRepo.description">
@@ -23,31 +23,31 @@
     </ion-card-content>
     <ion-grid style="border-top: 1px solid #eee;">
       <ion-row style="text-align:center">
-        <ion-col width-50 *ngIf="selectedRepo.stargazers_count > 0" (click)="viewStargazers($event, selectedRepo.stargazers_url)">{{selectedRepo.stargazers_count}}<br/>Stargazers</ion-col>
+        <ion-col tappable width-50 *ngIf="selectedRepo.stargazers_count > 0" (click)="viewStargazers($event, selectedRepo.stargazers_url)">{{selectedRepo.stargazers_count}}<br/>Stargazers</ion-col>
         <ion-col width-50 *ngIf="selectedRepo.stargazers_count == 0">{{selectedRepo.stargazers_count}}<br/>Stargazers</ion-col>
-        <ion-col width-50 *ngIf="selectedRepo.forks_count > 0" (click)="viewFollowers($event, selectedRepo.forks_url)">{{selectedRepo.forks_count}}<br/>Forks</ion-col>
+        <ion-col tappable width-50 *ngIf="selectedRepo.forks_count > 0" (click)="viewFollowers($event, selectedRepo.forks_url)">{{selectedRepo.forks_count}}<br/>Forks</ion-col>
         <ion-col width-50 *ngIf="selectedRepo.forks_count == 0">{{selectedRepo.forks_count}}<br/>Forks</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
   <ion-card>
     <ion-list>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Source
       </ion-item>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Forks
       </ion-item>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Releases
       </ion-item>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Contributors
       </ion-item>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Pull Requests
       </ion-item>
-      <ion-item (click)="viewContents($event)">
+      <ion-item tappable (click)="viewContents($event)">
         Issues
       </ion-item>
     </ion-list>
