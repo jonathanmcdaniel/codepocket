@@ -8,13 +8,15 @@ import {RepoListPage} from './pages/repo-list/repo-list';
 import {Authentication} from './services/authentication';
 import {Http} from '@angular/http';
 import {Headers} from '@angular/http';
+import {api} from './services/api'
 import {enableProdMode} from "@angular/core";
 
 enableProdMode();
 declare var window: any;
 
 @Component({
-    templateUrl: 'build/app.html'
+    templateUrl: 'build/app.html',
+    providers: [api]
 })
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
@@ -26,7 +28,7 @@ export class MyApp {
     android: boolean;
     rootPage: any = ProfilePage;
 
-    constructor(private platform: Platform, private http: Http) {
+    constructor(private platform: Platform, private http: Http, private api: api) {
         this.initializeApp();
         this.android = platform.is("android");
         this.tab1 = EventsList;

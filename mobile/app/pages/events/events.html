@@ -17,7 +17,6 @@
       <div *ngIf="event.type == 'PushEvent'" style="white-space: normal;">
         <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> pushed to <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
         <br/>
-        <!--<small>{{event.payload.commits[0].message}}</small>-->
       </div>
       <div *ngIf="event.type == 'WatchEvent'" style="white-space: normal;">
         <a primary (click)="viewProfile($event, event.actor.url)">{{event.actor.login}}</a> starred <a primary (click)="viewRepo($event, event.repo)">{{event.repo.name}}</a>
